@@ -101,16 +101,15 @@ NextNode<T>** SortedListLinked<T>::find(T* item)
 {
    NextNode<T>* prev = NULL;
    NextNode<T>* curr = head;
-
+   int x = (*compare_items) (item, curr);
    //DO THIS
    //loop to find the correct location to insert/remove item
-
-
-
-
-
-
-
+	while(x<0)
+	{
+		prev = curr;
+		curr = curr->getNext();
+		x = (*compare_items) (item, curr);
+	}
 
 
    //could simply return prev and compute curr, but prev might be null
@@ -142,20 +141,18 @@ void SortedListLinked<T>::add(T* item)
 
    //DO THIS
    //adding to the top of the list (check prev)
-   if (           )
+   if (prev==NULL)
    {
+		node->setNext(curr);
 
 
-
-
-   }
+	}
    else    //general add
    {
-
-
-
-
-   }
+		prev->setNext(node);
+		node->setNext(curr);
+		
+	}
 
    sze++;
 }
