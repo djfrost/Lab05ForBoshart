@@ -50,7 +50,7 @@ int main(int argc, char* argv[])
    ListArray<CD>* cds = CD::readCDs("cds.txt");
    //DO THIS
    //create the sorted linked list (call it sorted_list)
-   SortedListLinked<CD>* sorted_list = new SortedListLinked<CD>(&CD::comp_items);
+   SortedListLinked<CD>* sorted_list = new SortedListLinked<CD>(&CD::compare_items);
 
 
 
