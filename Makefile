@@ -1,8 +1,8 @@
 AutomatedMakefile = am
 CC = g++
 
-FILES = 
-EXECUTABLE = 
+FILES = ModelColumns.o SortedListBoxDriver.o
+EXECUTABLE = sorted.exe
 
 PROJECT_PATH = $(PROJECT_DIR)
 GTK_PATH = /$(DRIVE_LETTER)/MinGW/GTK
@@ -23,3 +23,5 @@ Project: 		$(FILES)
 ModelColumns.o:		ModelColumns.h ModelColumns.cpp
 			$(COMPILE) ModelColumns.cpp
 
+SortedListBoxDriver.o: SortedListLinked.h SortedListBoxDriver.cpp 
+			$(COMPILE) SortedListBoxDriver.cpp
