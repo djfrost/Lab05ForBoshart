@@ -53,11 +53,11 @@ int main(int argc, char* argv[])
    SortedListLinked<CD>* sorted_list = new SortedListLinked<CD>(&CD::compare_items);
 
 
-
+	cout << "past initialization" << endl;
    String title("CDs");
    ListBox<CD>* lstCDs = new ListBox<CD>(&title, sorted_list);
    addCDs(cds, lstCDs);
-
+	cout << "after add\n";
    Gtk::Window win;
 
    win.set_title("Music!");
