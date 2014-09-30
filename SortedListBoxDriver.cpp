@@ -21,9 +21,13 @@ void addCDs(ListArray<CD>* list, ListBox<CD>* lb)
    //iterate over and add the cds to the list box (use lb->addItem)
    while(iter->hasNext())
    {
-	   CD* cd = iter->next();
-	   lb->addItem(cd);
+		CD* cd = iter->next();
+		lb->addItem(cd);
+   
+   
    }
+
+
 
 
    delete iter;
@@ -37,9 +41,14 @@ void deleteCDs(ListArray<CD>* list)
    //iterate over and delete the cds
    while(iter->hasNext())
    {
-      CD* cd = iter->next();
-	  delete cd;
+		CD* cd = iter->next();
+		delete cd;
+   
+   
    }
+
+
+
 
    delete iter;
 }
@@ -50,14 +59,14 @@ int main(int argc, char* argv[])
    ListArray<CD>* cds = CD::readCDs("cds.txt");
    //DO THIS
    //create the sorted linked list (call it sorted_list)
-   SortedListLinked<CD>* sorted_list = new SortedListLinked<CD>(&CD::compare_items);
+	   SortedListLinked<CD>* sorted_list = new SortedListLinked<CD>(&CD::compare_items);
 
 
-	cout << "past initialization" << endl;
+
    String title("CDs");
    ListBox<CD>* lstCDs = new ListBox<CD>(&title, sorted_list);
    addCDs(cds, lstCDs);
-	cout << "after add\n";
+
    Gtk::Window win;
 
    win.set_title("Music!");

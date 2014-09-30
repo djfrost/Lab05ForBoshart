@@ -101,12 +101,10 @@ NextNode<T>** SortedListLinked<T>::find(T* item)
 {
    NextNode<T>* prev = NULL;
    NextNode<T>* curr = head;
-	cout << "after nodes\n";
    int x = (*compare_items) (item, curr->getItem());
-   cout << "before loop\n";
    //DO THIS
    //loop to find the correct location to insert/remove item
-	while(x!=0)    // POSSIBLY CHECK FOR NULL
+	while(x>0)    // POSSIBLY CHECK FOR NULL
 	{
 		
 
@@ -114,19 +112,16 @@ NextNode<T>** SortedListLinked<T>::find(T* item)
 			if(curr->getNext() != NULL)
 			{
 				curr = curr->getNext();
-				//cout << curr->getNext() << endl;	
-				//cout << curr->getItem() << endl;
+
 				x = (*compare_items) (item, curr->getItem());
 			
 			}
 			else
 			{	
 				x = 0;
-				return NULL;
+				curr = NULL;
 			}
 	}
-	
-	cout << "after loop\n";
 
    //could simply return prev and compute curr, but prev might be null
    //this way results in somewhat simpler code in add and remove
@@ -141,50 +136,42 @@ template < class T >
 void SortedListLinked<T>::add(T* item)
 {
    NextNode<T>* node = new NextNode<T>(item);
-	cout << "past declare\n";
-   //special case: adding to an empty list
-   	NextNode<T>* prev = NULL;
-    NextNode<T>* curr = NULL;
-	
-   if (sze == 0)
-    {
-       head = node;
-       sze++;
-       return;
-    }
-	cout << "past special case\n";
-    NextNode<T>** nodes = find(item);
-	cout << "past find\n"; 
-	if (nodes == NULL)
-	{
-	    prev = get(sze-1);
-	    curr = NULL;
-	}	
-	else
-	{
-	    prev = nodes[0];
-	    curr = nodes[1];
-	}
 
-	cout << "before if\n";
-	
-    //DO THIS
-    //adding to the top of the list (check prev)
-    if (prev == NULL)
-    {
-		cout << "NULL\n";
-		node->setNext(curr);
+   //special case: adding to an empty list
+   if (sze == 0)
+   {
+      head = node;
+      sze++;
+      return;
+   }
+
+   NextNode<T>** nodes = find(item);
+   NextNode<T>* prev = nodes[0];
+   NextNode<T>* curr = nodes[1];
+   delete[] nodes;
+
+   //DO THIS
+   //adding to the top of the list (check prev)
+   if (   prev == NULL        )
+   {
+		node->setNext(head);
 		head = node;
-	}
-    else    //general add
-    {
-		cout << "Else\n";
+		
+
+
+
+   }
+   else    //general add
+   {
 		prev->setNext(node);
 		node->setNext(curr);
-    }
-	delete prev;
-    delete[] nodes;
-    sze++;
+		
+
+
+
+   }
+
+   sze++;
 }
 
 template < class T >
@@ -223,10 +210,8 @@ void SortedListLinked<T>::remove(T* item)
    //removing the top item (check prev)
     if (prev == NULL)
     {
-		prev = curr;
-		curr = curr->getNext();
-		delete prev;
-		head = curr;
+		head = curr->getNext();
+		curr->setNext(NULL);
 		
 	}
     else  //general remove
