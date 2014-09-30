@@ -106,7 +106,7 @@ NextNode<T>** SortedListLinked<T>::find(T* item)
    cout << "before loop\n";
    //DO THIS
    //loop to find the correct location to insert/remove item
-	while(x>0)    // POSSIBLY CHECK FOR NULL
+	while(x!=0)    // POSSIBLY CHECK FOR NULL
 	{
 		
 
