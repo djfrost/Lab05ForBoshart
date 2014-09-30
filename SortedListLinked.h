@@ -114,8 +114,8 @@ NextNode<T>** SortedListLinked<T>::find(T* item)
 			if(curr->getNext() != NULL)
 			{
 				curr = curr->getNext();
-				cout << curr->getNext() << endl;	
-				cout << curr->getItem() << endl;
+				//cout << curr->getNext() << endl;	
+				//cout << curr->getItem() << endl;
 				x = (*compare_items) (item, curr->getItem());
 			
 			}
@@ -157,7 +157,7 @@ void SortedListLinked<T>::add(T* item)
 	cout << "past find\n"; 
 	if (nodes == NULL)
 	{
-	    prev = nodes->get(sze-1);
+	    prev = get(sze-1);
 	    curr = NULL;
 	}	
 	else
